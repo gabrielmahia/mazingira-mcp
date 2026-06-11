@@ -1,0 +1,58 @@
+{
+  "$schema": "https://glama.ai/mcp/schemas/1.0.0/server.json",
+  "name": "mazingira-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Kenya environment \u2014 NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation. 5 tools.",
+  "license": "MIT",
+  "author": {
+    "name": "Gabriel Mahia",
+    "email": "contact@aikungfu.dev"
+  },
+  "tools": [
+    {
+      "name": "nema_permit_guide",
+      "description": "NEMA environmental permits",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "climate_data_guide",
+      "description": "Kenya climate data sources",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "conservation_areas",
+      "description": "Kenya national parks and conservation",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "environmental_rights_query",
+      "description": "Environmental rights under Constitution Art 42",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    },
+    {
+      "name": "climate_adaptation_guide",
+      "description": "Climate adaptation for farmers and communities",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true
+      }
+    }
+  ]
+}
