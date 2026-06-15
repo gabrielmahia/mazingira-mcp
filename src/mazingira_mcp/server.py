@@ -2,7 +2,7 @@
 from __future__ import annotations
 from typing import Optional
 from fastmcp import FastMCP
-mcp = FastMCP(name="mazingira-mcp", description="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
+mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
 
 @mcp.tool(name="nema_permit_guide", description="NEMA environmental permit requirements and process in Kenya. DEMO.")
 def nema_permit_guide(activity_type: str, county: Optional[str] = None) -> dict:
