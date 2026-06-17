@@ -1,0 +1,14 @@
+# Smithery configuration for mazingira-mcp
+# East Africa AI Coordination Infrastructure — AI-KungFU
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties: {}
+    required: []
+  commandFunction: |-
+    (config) => ({
+      command: "mazingira-mcp",
+      args: [],
+      env: {}
+    })
