@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mazingira-mcp"
-version = "0.1.1"
+version = "0.1.2"
 description = "MCP server for Kenya environment — NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation. 5 tools."
 readme = "README.md"
 license = { text = "MIT" }
