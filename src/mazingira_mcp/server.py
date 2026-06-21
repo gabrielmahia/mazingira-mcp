@@ -2,10 +2,12 @@
 from __future__ import annotations
 from typing import Annotated, Optional
 from fastmcp import FastMCP
+from pydantic import Field
 mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
 
 @mcp.tool(name="nema_permit_guide", description="NEMA environmental permit requirements and process in Kenya. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
 def nema_permit_guide(activity_type: str, county: Annotated[Optional[str], "Optional filter for county. Pass None to return all results."] = None) -> dict:
+    """Return Kenya NEMA (National Environment Management Authority) permit requirements and application process."""
     PERMITS = {
         "construction": {"type": "EIA (Environmental Impact Assessment)", "threshold": "All projects > KES 10M or significant environmental impact",
                          "process": "Engage NEMA-licensed EIA expert → Submit project report → Public participation → NEMA decision",
@@ -26,6 +28,7 @@ def nema_permit_guide(activity_type: str, county: Annotated[Optional[str], "Opti
 
 @mcp.tool(name="climate_data_guide", description="Kenya climate data sources: weather, drought, flood risk. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
 def climate_data_guide(data_type: str, county: Annotated[Optional[str], "County for climate and rainfall data."] = None) -> dict:
+    """Return Kenya climate data, rainfall patterns, and temperature ranges by region."""
     SOURCES = {
         "weather": {"source": "Kenya Meteorological Department", "url": "meteo.go.ke", "data": "Daily forecasts, seasonal outlooks, historical records"},
         "drought": {"source": "NDMA Drought Monitor", "url": "ndma.go.ke", "data": "Monthly county-level drought phase (1-5). Integrated with wapimaji-mcp"},
@@ -40,6 +43,7 @@ def climate_data_guide(data_type: str, county: Annotated[Optional[str], "County 
 
 @mcp.tool(name="conservation_areas", description="Kenya conservation areas, national parks, and protected land zones. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
 def conservation_areas(county: Annotated[Optional[str], "County to list conservation areas and national parks for."] = None, area_type: Annotated[Optional[str], "Optional filter for area type. Pass None to return all results."] = None) -> dict:
+    """Return information on Kenya national parks, game reserves, and conservation areas."""
     AREAS = [
         {"name": "Maasai Mara National Reserve", "county": "Narok", "type": "national_reserve", "manager": "Narok County Government"},
         {"name": "Tsavo East NP", "county": "Taita Taveta", "type": "national_park", "manager": "KWS"},
