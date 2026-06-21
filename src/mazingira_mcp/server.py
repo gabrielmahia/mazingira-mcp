@@ -6,7 +6,7 @@ from pydantic import Field
 mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
 
 @mcp.tool(name="nema_permit_guide", description="NEMA environmental permit requirements and process in Kenya. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def nema_permit_guide(activity_type: str, county: Annotated[Optional[str], "Optional filter for county. Pass None to return all results."] = None) -> dict:
+def nema_permit_guide(activity_type: str, county: Optional[str] = Field(None, description="Optional filter for county. Pass None to return all results.")) -> dict:
     """Return Kenya NEMA (National Environment Management Authority) permit requirements and application process."""
     PERMITS = {
         "construction": {"type": "EIA (Environmental Impact Assessment)", "threshold": "All projects > KES 10M or significant environmental impact",
@@ -27,7 +27,7 @@ def nema_permit_guide(activity_type: str, county: Annotated[Optional[str], "Opti
             **data, "nema": "nema.go.ke | 020-2111088", "penalty": "Operating without EIA: KES 1M fine or 2 years prison"}
 
 @mcp.tool(name="climate_data_guide", description="Kenya climate data sources: weather, drought, flood risk. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def climate_data_guide(data_type: str, county: Annotated[Optional[str], "County for climate and rainfall data."] = None) -> dict:
+def climate_data_guide(data_type: str, county: Optional[str] = Field(None, description="County for climate and rainfall data.")) -> dict:
     """Return Kenya climate data, rainfall patterns, and temperature ranges by region."""
     SOURCES = {
         "weather": {"source": "Kenya Meteorological Department", "url": "meteo.go.ke", "data": "Daily forecasts, seasonal outlooks, historical records"},
@@ -42,7 +42,7 @@ def climate_data_guide(data_type: str, county: Annotated[Optional[str], "County 
             "sources": matched or SOURCES, "ndma": "ndma.go.ke for drought — see also wapimaji-mcp"}
 
 @mcp.tool(name="conservation_areas", description="Kenya conservation areas, national parks, and protected land zones. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def conservation_areas(county: Annotated[Optional[str], "County to list conservation areas and national parks for."] = None, area_type: Annotated[Optional[str], "Optional filter for area type. Pass None to return all results."] = None) -> dict:
+def conservation_areas(county: Optional[str] = Field(None, description="County to list conservation areas and national parks for."), area_type: Optional[str] = Field(None, description="Optional filter for area type. Pass None to return all results.")) -> dict:
     """Return information on Kenya national parks, game reserves, and conservation areas."""
     AREAS = [
         {"name": "Maasai Mara National Reserve", "county": "Narok", "type": "national_reserve", "manager": "Narok County Government"},
@@ -60,6 +60,7 @@ def conservation_areas(county: Annotated[Optional[str], "County to list conserva
 
 @mcp.tool(name="environmental_rights_query", description="Environmental rights under Kenya Constitution 2010 Article 42. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
 def environmental_rights_query(topic: str) -> dict:
+    """Return Kenya citizen environmental rights and violation reporting procedures."""
     RIGHTS = {
         "clean_environment": "Art 42: Every person has right to clean and healthy environment. Includes right to enforce it.",
         "eia_participation": "Public participation mandatory in EIA process. Community objections must be considered.",
@@ -76,7 +77,7 @@ def environmental_rights_query(topic: str) -> dict:
             "disclaimer": "Not legal advice."}
 
 @mcp.tool(name="climate_adaptation_guide", description="Kenya climate adaptation resources for farmers and communities. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def climate_adaptation_guide(region: Annotated[Optional[str], "Optional filter for region. Pass None to return all results."] = None, sector: Optional[str] = "agriculture") -> dict:
+def climate_adaptation_guide(region: Optional[str] = Field(None, description="Optional filter for region. Pass None to return all results."), sector: Optional[str] = "agriculture") -> dict:
     return {"source": "DEMO — NDMA, KALRO, NEMA", "region": region, "sector": sector,
             "strategies": {
                 "agriculture": ["Drought-tolerant crop varieties (KALRO KARI)", "Conservation tillage",
