@@ -1,11 +1,11 @@
 """MazingiraMCP — Kenya Environment and Climate Tools (5 tools). All data DEMO."""
 from __future__ import annotations
-from typing import Optional
+from typing import Annotated, Optional
 from fastmcp import FastMCP
 mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
 
-@mcp.tool(name="nema_permit_guide", description="NEMA environmental permit requirements and process in Kenya. DEMO.")
-def nema_permit_guide(activity_type: str, county: Optional[str] = None) -> dict:
+@mcp.tool(name="nema_permit_guide", description="NEMA environmental permit requirements and process in Kenya. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
+def nema_permit_guide(activity_type: str, county: Annotated[Optional[str], "Optional filter for county. Pass None to return all results."] = None) -> dict:
     PERMITS = {
         "construction": {"type": "EIA (Environmental Impact Assessment)", "threshold": "All projects > KES 10M or significant environmental impact",
                          "process": "Engage NEMA-licensed EIA expert → Submit project report → Public participation → NEMA decision",
@@ -24,8 +24,8 @@ def nema_permit_guide(activity_type: str, county: Optional[str] = None) -> dict:
     return {"source": "DEMO — nema.go.ke for official process", "activity": activity_type, "county": county,
             **data, "nema": "nema.go.ke | 020-2111088", "penalty": "Operating without EIA: KES 1M fine or 2 years prison"}
 
-@mcp.tool(name="climate_data_guide", description="Kenya climate data sources: weather, drought, flood risk. DEMO.")
-def climate_data_guide(data_type: str, county: Optional[str] = None) -> dict:
+@mcp.tool(name="climate_data_guide", description="Kenya climate data sources: weather, drought, flood risk. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
+def climate_data_guide(data_type: str, county: Annotated[Optional[str], "County for climate and rainfall data."] = None) -> dict:
     SOURCES = {
         "weather": {"source": "Kenya Meteorological Department", "url": "meteo.go.ke", "data": "Daily forecasts, seasonal outlooks, historical records"},
         "drought": {"source": "NDMA Drought Monitor", "url": "ndma.go.ke", "data": "Monthly county-level drought phase (1-5). Integrated with wapimaji-mcp"},
@@ -38,8 +38,8 @@ def climate_data_guide(data_type: str, county: Optional[str] = None) -> dict:
     return {"source": "DEMO — portals current as of 2025", "data_type": data_type, "county": county,
             "sources": matched or SOURCES, "ndma": "ndma.go.ke for drought — see also wapimaji-mcp"}
 
-@mcp.tool(name="conservation_areas", description="Kenya conservation areas, national parks, and protected land zones. DEMO.")
-def conservation_areas(county: Optional[str] = None, area_type: Optional[str] = None) -> dict:
+@mcp.tool(name="conservation_areas", description="Kenya conservation areas, national parks, and protected land zones. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
+def conservation_areas(county: Annotated[Optional[str], "County to list conservation areas and national parks for."] = None, area_type: Annotated[Optional[str], "Optional filter for area type. Pass None to return all results."] = None) -> dict:
     AREAS = [
         {"name": "Maasai Mara National Reserve", "county": "Narok", "type": "national_reserve", "manager": "Narok County Government"},
         {"name": "Tsavo East NP", "county": "Taita Taveta", "type": "national_park", "manager": "KWS"},
@@ -54,7 +54,7 @@ def conservation_areas(county: Optional[str] = None, area_type: Optional[str] = 
             "areas": AREAS, "note": "Buffer zones around parks have land use restrictions. Verify with KWS.",
             "kws": "kws.go.ke", "kfs": "kenyaforestservice.org"}
 
-@mcp.tool(name="environmental_rights_query", description="Environmental rights under Kenya Constitution 2010 Article 42. DEMO.")
+@mcp.tool(name="environmental_rights_query", description="Environmental rights under Kenya Constitution 2010 Article 42. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
 def environmental_rights_query(topic: str) -> dict:
     RIGHTS = {
         "clean_environment": "Art 42: Every person has right to clean and healthy environment. Includes right to enforce it.",
@@ -71,8 +71,8 @@ def environmental_rights_query(topic: str) -> dict:
             "nema": "nema.go.ke", "elc": "Environment and Land Court — judiciary.go.ke",
             "disclaimer": "Not legal advice."}
 
-@mcp.tool(name="climate_adaptation_guide", description="Kenya climate adaptation resources for farmers and communities. DEMO.")
-def climate_adaptation_guide(region: Optional[str] = None, sector: Optional[str] = "agriculture") -> dict:
+@mcp.tool(name="climate_adaptation_guide", description="Kenya climate adaptation resources for farmers and communities. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
+def climate_adaptation_guide(region: Annotated[Optional[str], "Optional filter for region. Pass None to return all results."] = None, sector: Optional[str] = "agriculture") -> dict:
     return {"source": "DEMO — NDMA, KALRO, NEMA", "region": region, "sector": sector,
             "strategies": {
                 "agriculture": ["Drought-tolerant crop varieties (KALRO KARI)", "Conservation tillage",
