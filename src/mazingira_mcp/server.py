@@ -89,3 +89,7 @@ def climate_adaptation_guide(region: Optional[str] = Field(None, description="Op
             }.get(sector.lower(), {"general": "Adapt practices to local climate projections."}),
             "kalro": "kalro.org — drought-tolerant varieties", "ndma": "ndma.go.ke — early warning",
             "ccap": "NCCAP II 2018–2022 (review at environment.go.ke)"}
+
+def main() -> None:
+    """Console entry point."""
+    mcp.run()

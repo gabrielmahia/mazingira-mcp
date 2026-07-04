@@ -1,4 +1,5 @@
 # mazingira-mcp
+<!-- mcp-name: io.github.gabrielmahia/mazingira-mcp -->
 
 [![mazingira-mcp Glama score](https://glama.ai/mcp/servers/gabrielmahia/mazingira-mcp/badges/score.svg)](https://glama.ai/mcp/servers/gabrielmahia/mazingira-mcp)
 [![smithery badge](https://smithery.ai/badge/@gabrielmahia/mazingira-mcp)](https://smithery.ai/server/@gabrielmahia/mazingira-mcp)
