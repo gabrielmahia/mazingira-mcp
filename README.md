@@ -1,18 +1,59 @@
 # mazingira-mcp
-<!-- mcp-name: io.github.gabrielmahia/mazingira-mcp -->
 
-[![mazingira-mcp Glama score](https://glama.ai/mcp/servers/gabrielmahia/mazingira-mcp/badges/score.svg)](https://glama.ai/mcp/servers/gabrielmahia/mazingira-mcp)
-[![smithery badge](https://smithery.ai/badge/@gabrielmahia/mazingira-mcp)](https://smithery.ai/server/@gabrielmahia/mazingira-mcp)
+## Why This Exists
 
+Kenyan projects stall or get fined because NEMA's permit thresholds, EIA requirements and environmental rights are hard to establish up front. Operating without an EIA carries serious penalties, so knowing which category a project falls into is worth more than knowing the law in general.
 
----
-**Compatible with `claude-sonnet-5`** (released 2026-06-30) — Anthropic's most agentic
-Sonnet yet. Runs multi-step tool chains end-to-end without stopping short.
-Install: `pip install mazingira-mcp` · Use with any MCP client.
+## Install
 
----
+```bash
+pip install mazingira-mcp
+```
 
-MCP server for Kenya environment — NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation. 5 tools.
+## Tools (5)
+
+- **`nema_permit_guide`** — Return Kenya NEMA (National Environment Management Authority) permit requirements and application process.  
+  <sub>args: activity_type, county</sub>
+- **`climate_data_guide`** — Return Kenya climate data, rainfall patterns, and temperature ranges by region.  
+  <sub>args: data_type, county</sub>
+- **`conservation_areas`** — Return information on Kenya national parks, game reserves, and conservation areas.  
+  <sub>args: county, area_type</sub>
+- **`environmental_rights_query`** — Return Kenya citizen environmental rights and violation reporting procedures.  
+  <sub>args: topic</sub>
+- **`climate_adaptation_guide`** —   
+  <sub>args: region, sector</sub>
+
+## Example
+
+```python
+from mazingira_mcp.server import nema_permit_guide
+
+result = nema_permit_guide(project_type='construction')
+# permit type, threshold, fee basis, timeline, penalty exposure
+```
+
+## Claude Desktop Integration
+
+Add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "mazingira-mcp": {
+      "command": "python",
+      "args": ["-m", "mazingira_mcp.server"]
+    }
+  }
+}
+```
+
+## Data & Disclaimers
+
+Thresholds, fees and penalties reflect NEMA guidance and the Environmental Management and Co-ordination Act. Verify current figures at nema.go.ke before budgeting or filing.
+
+Every tool response carries a `source` field. Responses labelled `DEMO` are
+illustrative reference data, not a live feed — verify against the authority
+named in the response before acting on it.
 
 ## Part of the East Africa Coordination Stack
 
