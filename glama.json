@@ -1,8 +1,8 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/1.0.0/server.json",
   "name": "mazingira-mcp",
-  "version": "0.1.0",
-  "description": "MCP server for Kenya environment \u2014 NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation. 5 tools.",
+  "version": "0.1.4",
+  "description": "MCP server for Kenya environment — NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation",
   "license": "MIT",
   "author": {
     "name": "Gabriel Mahia",
@@ -11,7 +11,7 @@
   "tools": [
     {
       "name": "nema_permit_guide",
-      "description": "NEMA environmental permits",
+      "description": "NEMA environmental permit requirements and process in Kenya. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -20,7 +20,7 @@
     },
     {
       "name": "climate_data_guide",
-      "description": "Kenya climate data sources",
+      "description": "Kenya climate data sources: weather, drought, flood risk. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -29,7 +29,7 @@
     },
     {
       "name": "conservation_areas",
-      "description": "Kenya national parks and conservation",
+      "description": "Kenya conservation areas, national parks, and protected land zones. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -38,7 +38,7 @@
     },
     {
       "name": "environmental_rights_query",
-      "description": "Environmental rights under Constitution Art 42",
+      "description": "Environmental rights under Kenya Constitution 2010 Article 42. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -47,7 +47,7 @@
     },
     {
       "name": "climate_adaptation_guide",
-      "description": "Climate adaptation for farmers and communities",
+      "description": "Kenya climate adaptation resources for farmers and communities. DEMO.",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -68,5 +68,8 @@
     "mcp",
     "useful-rails",
     "ai-agents"
+  ],
+  "maintainers": [
+    "gabrielmahia"
   ]
 }
