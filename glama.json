@@ -1,7 +1,7 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/1.0.0/server.json",
   "name": "mazingira-mcp",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "MCP server for Kenya environment — NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation",
   "license": "MIT",
   "author": {

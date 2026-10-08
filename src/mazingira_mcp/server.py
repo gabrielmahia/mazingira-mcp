@@ -1,12 +1,15 @@
 """MazingiraMCP — Kenya Environment and Climate Tools (5 tools). All data DEMO."""
 from __future__ import annotations
+
 from typing import Annotated, Optional
+
 from fastmcp import FastMCP
 from pydantic import Field
+
 mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
 
 @mcp.tool(name="nema_permit_guide", description="NEMA environmental permit requirements and process in Kenya. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def nema_permit_guide(activity_type: str, county: Optional[str] = Field(None, description="Optional filter for county. Pass None to return all results.")) -> dict:
+def nema_permit_guide(activity_type: str, county: str | None = Field(None, description="Optional filter for county. Pass None to return all results.")) -> dict:
     """Return Kenya NEMA (National Environment Management Authority) permit requirements and application process."""
     PERMITS = {
         "construction": {"type": "EIA (Environmental Impact Assessment)", "threshold": "All projects > KES 10M or significant environmental impact",
@@ -27,7 +30,7 @@ def nema_permit_guide(activity_type: str, county: Optional[str] = Field(None, de
             **data, "nema": "nema.go.ke | 020-2111088", "penalty": "Operating without EIA: KES 1M fine or 2 years prison"}
 
 @mcp.tool(name="climate_data_guide", description="Kenya climate data sources: weather, drought, flood risk. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def climate_data_guide(data_type: str, county: Optional[str] = Field(None, description="County for climate and rainfall data.")) -> dict:
+def climate_data_guide(data_type: str, county: str | None = Field(None, description="County for climate and rainfall data.")) -> dict:
     """Return Kenya climate data, rainfall patterns, and temperature ranges by region."""
     SOURCES = {
         "weather": {"source": "Kenya Meteorological Department", "url": "meteo.go.ke", "data": "Daily forecasts, seasonal outlooks, historical records"},
@@ -42,7 +45,7 @@ def climate_data_guide(data_type: str, county: Optional[str] = Field(None, descr
             "sources": matched or SOURCES, "ndma": "ndma.go.ke for drought — see also wapimaji-mcp"}
 
 @mcp.tool(name="conservation_areas", description="Kenya conservation areas, national parks, and protected land zones. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def conservation_areas(county: Optional[str] = Field(None, description="County to list conservation areas and national parks for."), area_type: Optional[str] = Field(None, description="Optional filter for area type. Pass None to return all results.")) -> dict:
+def conservation_areas(county: str | None = Field(None, description="County to list conservation areas and national parks for."), area_type: str | None = Field(None, description="Optional filter for area type. Pass None to return all results.")) -> dict:
     """Return information on Kenya national parks, game reserves, and conservation areas."""
     AREAS = [
         {"name": "Maasai Mara National Reserve", "county": "Narok", "type": "national_reserve", "manager": "Narok County Government"},
@@ -77,7 +80,7 @@ def environmental_rights_query(topic: str) -> dict:
             "disclaimer": "Not legal advice."}
 
 @mcp.tool(name="climate_adaptation_guide", description="Kenya climate adaptation resources for farmers and communities. DEMO.", annotations={"readOnlyHint": True, "openWorldHint": False})
-def climate_adaptation_guide(region: Optional[str] = Field(None, description="Optional filter for region. Pass None to return all results."), sector: Optional[str] = "agriculture") -> dict:
+def climate_adaptation_guide(region: str | None = Field(None, description="Optional filter for region. Pass None to return all results."), sector: str | None = "agriculture") -> dict:
     return {"source": "DEMO — NDMA, KALRO, NEMA", "region": region, "sector": sector,
             "strategies": {
                 "agriculture": ["Drought-tolerant crop varieties (KALRO KARI)", "Conservation tillage",
