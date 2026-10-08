@@ -1,4 +1,5 @@
 # mazingira-mcp
+<!-- mcp-name: io.github.gabrielmahia/mazingira-mcp -->
 
 ## Why This Exists
 
