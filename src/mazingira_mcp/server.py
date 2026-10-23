@@ -1,12 +1,20 @@
 """MazingiraMCP — Kenya Environment and Climate Tools (5 tools). All data DEMO."""
 from __future__ import annotations
 
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _pkg_version
 from typing import Annotated, Optional
 
 from fastmcp import FastMCP
 from pydantic import Field
 
-mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.")
+try:
+    _VERSION = _pkg_version("mazingira-mcp")
+except PackageNotFoundError:  # a source tree that was never installed
+    _VERSION = "0+unknown"
+
+
+mcp = FastMCP(name="mazingira-mcp", instructions="Kenya environment: NEMA permits, climate data, conservation. DEMO.", version=_VERSION)
 
 @mcp.tool(name="nema_permit_guide", description="What environmental permit or assessment an activity needs from NEMA in Kenya (EIA, audit or licence), with the threshold, process and penalty. Use when someone plans construction, farming, mining, manufacturing or similar. activity_type is matched by text; an unrecognised activity returns an error listing the valid ones instead of the construction EIA. county is only echoed back. Returns the source label, the activity, the permit type, threshold, steps, NEMA contact and a penalty note. Static summary labelled DEMO: confirm with NEMA. Read-only; no side effects.", annotations={"readOnlyHint": True, "openWorldHint": False})
 def nema_permit_guide(activity_type: Annotated[str, Field(description="Activity such as construction, farming or mining; unrecognised values return an error.")], county: str | None = Field(None, description="Optional filter for county. Pass None to return all results.")) -> dict:
