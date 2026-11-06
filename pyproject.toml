@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mazingira-mcp"
-version = "0.1.10"
+version = "0.1.11"
 description = "MCP server for Kenya environment — NEMA permits, climate data, conservation areas, environmental rights, and climate adaptation. 5 tools."
 readme = "README.md"
 license = "MIT"
@@ -23,6 +23,7 @@ classifiers = [
 mazingira-mcp = "mazingira_mcp.server:mcp.run"
 
 [project.urls]
+Issues = "https://github.com/gabrielmahia/mazingira-mcp/issues"
 Homepage = "https://github.com/gabrielmahia/mazingira-mcp"
 Documentation = "https://github.com/gabrielmahia/nairobi-stack"
 "MCP Registry" = "https://registry.modelcontextprotocol.io"
